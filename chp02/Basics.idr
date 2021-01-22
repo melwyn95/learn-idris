@@ -50,7 +50,43 @@ Idris> the Double (cast 4 + 4)
 8.0 : Double
 Idris> the Double (cast (4 + 4))
 8.0 : Double
-Idris>
 
+Idris> 'a'
+'a' : Char
+Idris> "Hello world!"
+"Hello world!" : String
+Idris> :t '\n'
+'\n' : Char
+Idris> :t "Hello world!\n"
+"Hello world!\n" : String
+Idris> "Hello world!\n"
+"Hello world!\n" : String
+Idris> "Hello world!\n\naaa"
+"Hello world!\n\naaa" : String
+Idris> length "Hello!"
+6 : Nat
+Idris> reverse "drawer"
+"reward" : String
+Idris> substr 6 5 "Hello world!"
+"world" : String
+Idris> "Hello" ++ " " ++ "World"
+"Hello World" : String
+
+Idris> length ("Hello" ++ " " ++ "World")
+11 : Nat
+Idris> True && False
+False : Bool
+Idris> True || False
+True : Bool
+Idris> 3 > 2
+True : Bool
+Idris> 100 == 99
+False : Bool
+Idris> 100 /= 99
+True : Bool
+Idris> :let word = "programming"
+Idris> if length word > 10 then "What a long word!" else "Short word"
+"What a long word!" : String
+Idris>
 
 -}
