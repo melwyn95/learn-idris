@@ -90,3 +90,28 @@ Idris> if length word > 10 then "What a long word!" else "Short word"
 Idris>
 
 -}
+
+-- Double
+double : Int -> Int
+double x = x + x
+
+-- Partial Application
+add : Int -> Int -> Int
+add a b = a + b
+
+{-
+*chp02/Basics> :let addTwo = add 2
+*chp02/Basics> addTwo
+add 2 : Int -> Int
+*chp02/Basics> addTwo 3
+5 : Int
+*chp02/Basics> :t addTwo
+addTwo : Int -> Int
+-}
+
+identity : ty -> ty
+identity x = x
+
+-- the
+the : (ty : Type) -> ty -> ty
+the ty x = x
