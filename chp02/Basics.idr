@@ -115,3 +115,30 @@ identity x = x
 -- the
 the : (ty : Type) -> ty -> ty
 the ty x = x
+
+{-
+Idris> :t ==
+(==) : Eq ty => ty -> ty -> Bool
+Idris> :t +
+(+) : Num ty => ty -> ty -> ty
+Idris> :t >=
+(>=) : Ord ty => ty -> ty -> Bool
+
+Idris> :t (+) 2
+(+) 2 : Integer -> Integer
+Idris> :t (+) 2 3
+2 + 3 : Integer
+Idris> (+) 2 3
+5 : Integer
+Idris> (< 3) 5
+False : Bool
+Idris> (< 3) 2
+True : Bool
+Idris> (3 <) 2
+False : Bool
+Idris> (3 <) 4
+True : Bool
+Idris> :t (3 <)
+\ARG => 3 < ARG : Integer -> Bool
+Idris>
+-}
