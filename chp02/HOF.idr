@@ -22,4 +22,7 @@ add a b = a + b
 16 : Integer
 *HOF> :t \x => x * x
 \x => x * x : Integer -> Integer
+
+Idris> let x = 50 in x + x
+100 : Integer
 -}
