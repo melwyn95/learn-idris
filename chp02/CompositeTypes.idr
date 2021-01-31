@@ -50,4 +50,44 @@ Idris> [5, 4..1]
 [5, 4, 3, 2, 1] : List Integer
 Idris> [5..1]
 [5, 4, 3, 2, 1] : List Integer
+
+Idris> words "A very very long line"
+["A", "very", "very", "long", "line"] : List String
+Idris> unwords []
+"" : String
+Idris> unwords ["One", "two", "three", "four!"]
+"One two three four!" : String
+Idris> length ["One", "two", "three", "four!"]
+4 : Nat
+-}
+
+wordCount : String -> Nat
+wordCount str = length (words str)
+
+{-
+*CompositeTypes> map length (words "How long are these words?")
+[3, 4, 3, 5, 6] : List Nat
+-}
+
+allLengths : List String -> List Nat
+allLengths strs = map length strs
+
+{-
+*CompositeTypes> map length (words "How long are these words?")
+[3, 4, 3, 5, 6] : List Nat
+*CompositeTypes> allLengths (words "How long are these words?")
+[3, 4, 3, 5, 6] : List Nat
+
+Idris> filter (> 10) [1..14]
+[11, 12, 13, 14] : List Integer
+
+Idris> :t length
+Prelude.List.length : List a -> Nat
+Prelude.Strings.length : String -> Nat
+
+Idris> :t sum
+sum : Foldable t => Num a => t a -> a
+
+Idris> sum [1..100]
+5050 : Integer
 -}
