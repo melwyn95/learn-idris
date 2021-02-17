@@ -8,3 +8,8 @@ sixInts = [4, 5, 6, 7, 8, 9]
 
 tenInts : Vect 10 Int
 tenInts = fourInts ++ sixInts
+
+append : (elem : Type) -> (n : Nat) -> (m : Nat) ->
+        Vect n elem -> Vect m elem -> Vect (n + m) elem
+append elem Z m [] ys = ys
+append elem (S len) m (x :: xs) ys = x :: append elem len m xs ys
