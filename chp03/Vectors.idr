@@ -17,3 +17,15 @@ append elem (S len) m (x :: xs) ys = x :: append elem len m xs ys
 createEmpties : Vect n (Vect 0 a)
 createEmpties {n = Z} = []
 createEmpties {n = (S k)} = [] :: createEmpties
+
+append' : {elem : Type} -> {n : Nat} -> {m : Nat} ->
+          Vect n elem -> Vect m elem -> Vect (n + m) elem
+append' [] ys = ys
+append' (x :: xs) ys = x :: append' xs ys
+
+length'': Vect n a -> Nat
+length'' [] = 0
+length'' (x :: xs) = 1 + length'' xs
+
+length' : Vect n a -> Nat
+length' {n} xs = n
