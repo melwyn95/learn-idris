@@ -7,6 +7,9 @@ data Picture = Primitive Shape
              | Rotate Double Picture
              | Translate Double Double Picture
 
+%name Shape shape, shape1, shape2
+%name Picture pic, pic1, pic2
+
 rectangle : Picture
 rectangle = Primitive (Rectangle 20 10)
 
@@ -20,3 +23,9 @@ testPicture : Picture
 testPicture = Combine (Translate 5 5 rectangle)
               (Combine (Translate 35 5 circle)
               (Translate 15 25 triangle))
+
+pictureArea : Picture -> Double
+pictureArea (Primitive shape) = area shape
+pictureArea (Combine pic pic1) = pictureArea pic + pictureArea pic1
+pictureArea (Rotate x pic) = pictureArea pic
+pictureArea (Translate x y pic) = pictureArea pic

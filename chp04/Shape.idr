@@ -1,6 +1,7 @@
+module Main
 
 ||| Represents shapes
-export
+public export
 data Shape = ||| A triangle, with its base length and height
              Triangle Double Double
            | ||| A Rectangle, with its length and height
@@ -8,6 +9,7 @@ data Shape = ||| A triangle, with its base length and height
            | ||| A circile, with its radius
              Circle Double
 
+export
 area : Shape -> Double
 area (Triangle base height) = 0.5 * base * height
 area (Rectangle length height) = length * height
