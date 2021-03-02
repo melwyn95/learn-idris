@@ -29,3 +29,18 @@ pictureArea (Primitive shape) = area shape
 pictureArea (Combine pic pic1) = pictureArea pic + pictureArea pic1
 pictureArea (Rotate x pic) = pictureArea pic
 pictureArea (Translate x y pic) = pictureArea pic
+
+data Biggest = NoTriangle | Size Double
+
+maxBiggest : Biggest -> Biggest -> Biggest
+maxBiggest NoTriangle y = y
+maxBiggest (Size x) NoTriangle = Size x
+maxBiggest (Size x) (Size y) = Size (max x y)
+
+biggestTriangle : Picture -> Biggest
+biggestTriangle (Primitive (Triangle x y)) = Size (0.5 * x * y)
+biggestTriangle (Primitive (Rectangle x y)) = NoTriangle
+biggestTriangle (Primitive (Circle x)) = NoTriangle
+biggestTriangle (Combine pic pic1) = maxBiggest (biggestTriangle pic) (biggestTriangle pic1)
+biggestTriangle (Rotate x pic) = biggestTriangle pic
+biggestTriangle (Translate x y pic) = biggestTriangle pic
