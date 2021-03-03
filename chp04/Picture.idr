@@ -44,3 +44,8 @@ biggestTriangle (Primitive (Circle x)) = NoTriangle
 biggestTriangle (Combine pic pic1) = maxBiggest (biggestTriangle pic) (biggestTriangle pic1)
 biggestTriangle (Rotate x pic) = biggestTriangle pic
 biggestTriangle (Translate x y pic) = biggestTriangle pic
+
+
+safeDivide : Double -> Double -> Maybe Double
+safeDivide x y = if y == 0 then Nothing
+                           else Just (x / y)
