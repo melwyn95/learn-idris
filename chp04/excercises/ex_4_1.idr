@@ -61,11 +61,10 @@ evaluate (Sub e1 e2) = evaluate e1 - evaluate e2
 evaluate (Mult e1 e2) = evaluate e1 * evaluate e2
 
 maxMaybe : Ord a => Maybe a -> Maybe a -> Maybe a
-maxMaybe Nothing y = y
-maxMaybe p1@(Just x) Nothing = p1
-maxMaybe (Just x) (Just y)
-  = if x > y then Just x
-             else Just y
+maxMaybe Nothing Nothing = Nothing
+maxMaybe Nothing (Just x) = Just x
+maxMaybe (Just x) Nothing = Just x
+maxMaybe (Just x) (Just y) = Just (max x y)
 
 testPic1 : Picture
 testPic1 = Combine (Primitive (Triangle 2 3))
@@ -81,7 +80,8 @@ isTriangle (Rectangle x y) = False
 isTriangle (Circle x) = False
 
 biggestTriangle : Picture -> Maybe Double
-biggestTriangle (Primitive x) = if isTriangle x then Just (area x) else Nothing
+biggestTriangle (Primitive tri@(Triangle x y)) = Just (area tri)
+biggestTriangle (Primitive _) = Nothing
 biggestTriangle (Combine x y) = maxMaybe (biggestTriangle x) (biggestTriangle y)
-biggestTriangle (Rotate _ x) = biggestTriangle x
-biggestTriangle (Translate _ _ x) =? biggestTriangle x
+biggestTriangle (Rotate x pic) = biggestTriangle pic
+biggestTriangle (Translate x y pic) =? biggestTriangle pic
