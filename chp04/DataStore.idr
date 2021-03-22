@@ -36,11 +36,20 @@ parse : (input : String) -> Maybe Command
 parse input = case Strings.span (/= ' ') input of
                    (cmd, args) => parseCommand cmd (ltrim args)
 
+getEntry : (pos : Integer) -> (store : DataStore) -> Maybe (String, DataStore)
+getEntry pos store = let store_items = items store in
+                            (case integerToFin pos (size store) of
+                                  Nothing => Just ("Out of range\n", store)
+                                  (Just id) => Just (index id store_items ++ "\n", store))
+
 processInput : DataStore -> String -> Maybe (String, DataStore)
 processInput store inp
   = case parse inp of
          Nothing => Just ("Invalid Command\n", store)
-         (Just cmd) => ?processCommand
+         (Just (Add str)) =>
+            Just ("ID " ++ show (size store) ++ "\n", addToStore store str)
+         (Just (Get pos)) => getEntry pos store
+         (Just Quit) => Nothing
 
 main : IO ()
 main = replWith (MkData _ []) "Command: "processInput
