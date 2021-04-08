@@ -1,4 +1,4 @@
-
+export
 readNumber : IO (Maybe Nat)
 readNumber = do
   input <- getLine
