@@ -13,7 +13,12 @@ replWith' : (state : a) ->
 replWith' state prompt onInput = do
   putStr prompt
   input <- getLine
-  let Just (output, newstate) = onInput state input
-    | Nothing => pure ()
-  putStr output
-  replWith' newstate prompt onInput
+  -- pattern matching + let binding
+  -- let Just (output, newstate) = onInput state input
+  --   | Nothing => pure ()
+  -- normal case expression
+  case onInput state input of
+        Nothing => pure ()
+        Just (output, newstate) => do
+          putStr output
+          replWith' newstate prompt onInput
